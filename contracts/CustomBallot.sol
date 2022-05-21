@@ -26,6 +26,8 @@ contract CustomBallot {
 
     mapping(address => uint256) public spentVotePower;
 
+    mapping(address => uint256) public votingPowerAvailable;
+
     uint256 public myAnything;
     Proposal[] public proposals;
     IERC20Votes public voteToken;
@@ -43,8 +45,8 @@ contract CustomBallot {
     }
 
     function vote(uint256 proposal, uint256 amount) external {
-        uint256 votingPowerAvailable = votingPower();
-        require(votingPowerAvailable >= amount, "Has not enough voting power");
+        require(votingPowerAvailable[msg.sender] >= amount, "Has not enough voting power");
+        votingPowerAvailable[msg.sender] -= amount;
         spentVotePower[msg.sender] += amount;
         proposals[proposal].voteCount += amount;
         emit Voted(msg.sender, proposal, amount, proposals[proposal].voteCount);
@@ -64,11 +66,13 @@ contract CustomBallot {
         winnerName_ = proposals[winningProposal()].name;
     }
 
+    function purchaseVotes() external payable {
+        voteToken.mint(msg.sender, msg.value);
+        votingPowerAvailable[msg.sender] += msg.value;
+    }
+
     function votingPower() public view returns (uint256 votingPower_) {
-        votingPower_ = voteToken.getPastVotes(
-            msg.sender,
-            referenceBlock
-        ) - spentVotePower[msg.sender];
+        votingPower_ = votingPowerAvailable[msg.sender];
     }
 
 
