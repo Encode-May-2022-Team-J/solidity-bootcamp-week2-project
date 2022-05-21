@@ -1,46 +1,50 @@
-# Advanced Sample Hardhat Project
+# MyToken contract address (ropsten)
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
+0x48DFC913ca94d08DC7edbf71266208E36d666f1d
 
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
+# CustomBallot contract address (ropsten)
 
-Try running some of the following tasks:
+0x6648CA1fc9EF5eDCbC9A11450E54f8668Bd9565d
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.ts
-TS_NODE_FILES=true npx ts-node scripts/deploy.ts
-npx eslint '**/*.{js,ts}'
-npx eslint '**/*.{js,ts}' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
-```
+# Terminal output:
 
-# Etherscan verification
-
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
-
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
-
-```shell
-hardhat run --network ropsten scripts/deploy.ts
-```
-
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
-
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
-```
-
-# Performance optimizations
-
-For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+yarn run ts-node --files ./scripts/deploy.ts
+Deploying from account address 0xb0754B937bD306fE72264274A61BC03F43FB685F
+Wallet balance 0.21409205443697013
+Deploying MyToken contract
+Awaiting confirmations
+Token contract successfully deployed at address: 0x48DFC913ca94d08DC7edbf71266208E36d666f1d
+Minting some tokens for myself..
+Awaiting confirmations
+Minted 1000000000000000
+MyToken balance of my wallet: 1000000000000000
+Delegaing votes to myself..
+Awaiting confirmation
+Successfully delegated
+Deploying ballot contract with:
+Ballot proposals: Yes,No,YesAndNo
+Vote token address 0x48DFC913ca94d08DC7edbf71266208E36d666f1d
+Awaiting confirmations
+CustomBallot contract successfully deployed at address: 0x6648CA1fc9EF5eDCbC9A11450E54f8668Bd9565d
+Check my voting power
+Current voting power: 1000000000000000
+Putting a vote in.. 99999 MTK on Yes
+Awaiting confirmation
+Successfully voted
+Spent voting power: 99999
+Remaining voting power: 999999999900001
+Current leading proposal is 0x5965730000000000000000000000000000000000000000000000000000000000
+Changed my mind, putting another vote in.. 999999 MTK on No
+Awaiting confirmation
+Successfully voted
+Spent voting power: 1099998
+Remaining voting power: 999999998900002
+Current leading proposal is 0x4e6f000000000000000000000000000000000000000000000000000000000000
+I guess what I really meant was Yes and No.. 9999999 MTK on YesAndNo
+Awaiting confirmation
+Successfully voted
+Spent voting power: 11099997
+Remaining voting power: 999999988900003
+Current leading proposal is 0x4e6f000000000000000000000000000000000000000000000000000000000000
+Done
+Done in 325.54s.

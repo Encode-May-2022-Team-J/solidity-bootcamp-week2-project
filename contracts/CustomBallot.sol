@@ -39,7 +39,7 @@ contract CustomBallot {
             proposals.push(Proposal({name: proposalNames[i], voteCount: 0}));
         }
         voteToken = IERC20Votes(_voteToken);
-        referenceBlock = block.number;
+        referenceBlock = block.number-1;
     }
 
     function vote(uint256 proposal, uint256 amount) external {

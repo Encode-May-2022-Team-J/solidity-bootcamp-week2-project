@@ -107,7 +107,8 @@ describe("Testing CustomBallot", function () {
 
             await ballotContract.deployed();
 
-            // TODO why does it work when I do this ????
+            // Ugly workaround because this does not seem to work in test
+            // await ballotContract.deployTransaction.wait(2);
             const setAnything = await ballotContract.setAnything(100);
 
             await setAnything.wait();
@@ -147,7 +148,7 @@ describe("Testing CustomBallot", function () {
 
             const origVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
 
-            await vote(ballotContract, 0, 1000000000000000);
+            await vote(ballotContract, 0, TOKEN_AMOUNT);
 
             const afterVotePower = await ballotContract.votingPower();
 
