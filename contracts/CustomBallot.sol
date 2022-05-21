@@ -20,8 +20,13 @@ contract CustomBallot {
         uint256 voteCount;
     }
 
+    function setAnything(uint256 _test) public payable {
+       myAnything = _test;
+    }
+
     mapping(address => uint256) public spentVotePower;
 
+    uint256 public myAnything;
     Proposal[] public proposals;
     IERC20Votes public voteToken;
     uint256 public referenceBlock;

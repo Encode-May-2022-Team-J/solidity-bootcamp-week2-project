@@ -45,6 +45,30 @@ describe("Testing CustomBallot", function () {
         accounts = await ethers.getSigners();
     })
 
+    describe("When the ballot contract is deployed", function () {
+
+        let ballotContract: CustomBallot
+
+        beforeEach(async () => {
+            const mintTx = await tokenContract.mint(accounts[0].address, TOKEN_AMOUNT);
+
+            await mintTx.wait();
+
+            await delegate(tokenContract, accounts[0].address)
+
+            ballotContract = await ballotFactory.deploy(convertStringArrayToBytes32(PROPOSALS), tokenContract.address);
+
+            await ballotContract.deployed();
+        })
+
+
+        it("should have the voteToken address set", async () => { 
+
+            expect(await ballotContract.voteToken()).to.eq(tokenContract.address);
+        })
+
+    })
+
     describe("When a vote is cast without voting rights", function () {
         let ballotContract: CustomBallot
 
@@ -82,6 +106,11 @@ describe("Testing CustomBallot", function () {
             ballotContract = await ballotFactory.deploy(convertStringArrayToBytes32(PROPOSALS), tokenContract.address);
 
             await ballotContract.deployed();
+
+            // TODO why does it work when I do this ????
+            const setAnything = await ballotContract.setAnything(100);
+
+            await setAnything.wait();
         })
 
         it("should increase spentVotePower by vote amount", async () => { 
@@ -112,19 +141,24 @@ describe("Testing CustomBallot", function () {
                 .withArgs(accounts[0].address, 0, TOKEN_AMOUNT, (await ballotContract.proposals(0)).voteCount);
         })
 
-        // it("should reduce voting power by amount", async () => { 
+        it("should reduce voting power by amount", async () => { 
 
-        //     const origVotePower = await ballotContract.votingPower();
+            const origVotePower = await ballotContract.votingPower();
 
-        //     // origVotePower is a tx instead of bigNumber..
-        //     console.log(origVotePower);
+            const origVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
 
-        //     await vote(ballotContract, 0, 1000000000000000)
+            await vote(ballotContract, 0, 1000000000000000);
 
-        //     // const diff = origVotePower.sub(await ballotContract.votingPower())
+            const afterVotePower = await ballotContract.votingPower();
 
-        //     // expect(diff).to.eq(0);
-        // })
+            const afterVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
+
+            expect(origVotePower).gt(origVotePowerSpent);
+            expect(afterVotePowerSpent).gt(afterVotePower);
+            expect(origVotePower).to.eq(afterVotePowerSpent);
+            expect(origVotePowerSpent).to.eq(afterVotePower);
+
+        })
     })
 });
 
