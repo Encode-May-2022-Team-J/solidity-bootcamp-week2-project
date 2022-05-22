@@ -8,7 +8,7 @@
 
 # Terminal output deployToken.ts:
 
-```yarn run ts-node --files ./scripts/deploy.ts
+```yarn run ts-node --files ./scripts/deployToken.ts
 Deploying from account address 0xb0754B937bD306fE72264274A61BC03F43FB685F
 Wallet balance 0.19980253085194633
 Deploying MyToken contract
