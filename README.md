@@ -1,50 +1,38 @@
 # MyToken contract address (ropsten)
 
-0x48DFC913ca94d08DC7edbf71266208E36d666f1d
+0xb8f22688BEfb8A90D8297AA59d603e75C195Ca13
 
 # CustomBallot contract address (ropsten)
 
-0x6648CA1fc9EF5eDCbC9A11450E54f8668Bd9565d
 
-# Terminal output:
 
-yarn run ts-node --files ./scripts/deploy.ts
+# Terminal output deployToken.ts:
+
+```yarn run ts-node --files ./scripts/deploy.ts
 Deploying from account address 0xb0754B937bD306fE72264274A61BC03F43FB685F
-Wallet balance 0.21409205443697013
+Wallet balance 0.19980253085194633
 Deploying MyToken contract
 Awaiting confirmations
-Token contract successfully deployed at address: 0x48DFC913ca94d08DC7edbf71266208E36d666f1d
-Minting some tokens for myself..
+Token contract successfully deployed at address: 0xb8f22688BEfb8A90D8297AA59d603e75C195Ca13
+Minting some tokens..
+Minting 1000000000000000 for 0xD2E0F920E403D8D9F8aA4Ae33Fca95D059F6EA54
 Awaiting confirmations
-Minted 1000000000000000
-MyToken balance of my wallet: 1000000000000000
+Minted 1000000000000000 to 0xD2E0F920E403D8D9F8aA4Ae33Fca95D059F6EA54
+MyToken balance of 0xD2E0F920E403D8D9F8aA4Ae33Fca95D059F6EA54: 1000000000000000
+Minting 1000000000000000 for 0x886A072C21f6d35F8498546c7Bd6234B7fad7e41
+Awaiting confirmations
+Minted 1000000000000000 to 0x886A072C21f6d35F8498546c7Bd6234B7fad7e41
+MyToken balance of 0x886A072C21f6d35F8498546c7Bd6234B7fad7e41: 1000000000000000
+Minting 1000000000000000 for 0xB5fFBF67Fb1834dCFB8d3e9DAAEa2E67a6bc70de
+Awaiting confirmations
+Minted 1000000000000000 to 0xB5fFBF67Fb1834dCFB8d3e9DAAEa2E67a6bc70de
+MyToken balance of 0xB5fFBF67Fb1834dCFB8d3e9DAAEa2E67a6bc70de: 1000000000000000
+Minting 1000000000000000 for 0xb0754B937bD306fE72264274A61BC03F43FB685F
+Awaiting confirmations
+Minted 1000000000000000 to 0xb0754B937bD306fE72264274A61BC03F43FB685F
+MyToken balance of 0xb0754B937bD306fE72264274A61BC03F43FB685F: 1000000000000000
 Delegaing votes to myself..
 Awaiting confirmation
 Successfully delegated
-Deploying ballot contract with:
-Ballot proposals: Yes,No,YesAndNo
-Vote token address 0x48DFC913ca94d08DC7edbf71266208E36d666f1d
-Awaiting confirmations
-CustomBallot contract successfully deployed at address: 0x6648CA1fc9EF5eDCbC9A11450E54f8668Bd9565d
-Check my voting power
-Current voting power: 1000000000000000
-Putting a vote in.. 99999 MTK on Yes
-Awaiting confirmation
-Successfully voted
-Spent voting power: 99999
-Remaining voting power: 999999999900001
-Current leading proposal is 0x5965730000000000000000000000000000000000000000000000000000000000
-Changed my mind, putting another vote in.. 999999 MTK on No
-Awaiting confirmation
-Successfully voted
-Spent voting power: 1099998
-Remaining voting power: 999999998900002
-Current leading proposal is 0x4e6f000000000000000000000000000000000000000000000000000000000000
-I guess what I really meant was Yes and No.. 9999999 MTK on YesAndNo
-Awaiting confirmation
-Successfully voted
-Spent voting power: 11099997
-Remaining voting power: 999999988900003
-Current leading proposal is 0x4e6f000000000000000000000000000000000000000000000000000000000000
 Done
-Done in 325.54s.
+Done in 258.93s.```
