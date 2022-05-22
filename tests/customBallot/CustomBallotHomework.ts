@@ -12,7 +12,7 @@ function convertStringArrayToBytes32(array: string[]) {
     const bytes32Array = [];
 
     for (let index = 0; index < array.length; index++) {
-      bytes32Array.push(ethers.utils.formatBytes32String(array[index]));
+        bytes32Array.push(ethers.utils.formatBytes32String(array[index]));
     }
 
     return bytes32Array;
@@ -62,7 +62,7 @@ describe("Testing CustomBallot", function () {
         })
 
 
-        it("should have the voteToken address set", async () => { 
+        it("should have the voteToken address set", async () => {
 
             expect(await ballotContract.voteToken()).to.eq(tokenContract.address);
         })
@@ -78,18 +78,18 @@ describe("Testing CustomBallot", function () {
             await ballotContract.deployed();
         })
 
-        it("should revert if voting power has not been delegated", async () => { 
+        it("should revert if voting power has not been delegated", async () => {
             await expect(
                 vote(ballotContract, 0, TOKEN_AMOUNT)
-              ).to.be.revertedWith("Has not enough voting power");
+            ).to.be.revertedWith("Has not enough voting power");
         })
 
-        it("should revert if account has no balance", async () => { 
+        it("should revert if account has no balance", async () => {
             await delegate(tokenContract, accounts[0].address)
 
             await expect(
                 vote(ballotContract, 0, TOKEN_AMOUNT)
-              ).to.be.revertedWith("Has not enough voting power");
+            ).to.be.revertedWith("Has not enough voting power");
         })
     })
 
@@ -114,7 +114,7 @@ describe("Testing CustomBallot", function () {
             await setAnything.wait();
         })
 
-        it("should increase spentVotePower by vote amount", async () => { 
+        it("should increase spentVotePower by vote amount", async () => {
             const origSpentVotePower = await ballotContract.spentVotePower(accounts[0].address);
 
             await vote(ballotContract, 0, TOKEN_AMOUNT);
@@ -124,7 +124,7 @@ describe("Testing CustomBallot", function () {
             expect((await ballotContract.spentVotePower(accounts[0].address)).sub(origSpentVotePower)).to.eq(ethers.utils.parseEther('0.001'));
         })
 
-        it("should increase the elected proposals voteCount by vote amount", async () => { 
+        it("should increase the elected proposals voteCount by vote amount", async () => {
             const origVoteCount = (await ballotContract.proposals(0)).voteCount;
 
             await vote(ballotContract, 0, TOKEN_AMOUNT);
@@ -134,7 +134,7 @@ describe("Testing CustomBallot", function () {
             expect((await ballotContract.proposals(0)).voteCount.sub(origVoteCount)).to.eq(ethers.utils.parseEther('0.001'));
         })
 
-        it("should emit Vote event with params provided by voter", async () => { 
+        it("should emit Vote event with params provided by voter", async () => {
             const origVoteCount = (await ballotContract.proposals(0)).voteCount;
 
             expect(await vote(ballotContract, 0, TOKEN_AMOUNT))
@@ -142,15 +142,15 @@ describe("Testing CustomBallot", function () {
                 .withArgs(accounts[0].address, 0, TOKEN_AMOUNT, (await ballotContract.proposals(0)).voteCount);
         })
 
-        it("should reduce voting power by amount", async () => { 
+        it("should reduce voting power by amount", async () => {
 
-            const origVotePower = await ballotContract.votingPower();
+            const origVotePower = await ballotContract.votingPower(accounts[0]);
 
             const origVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
 
             await vote(ballotContract, 0, TOKEN_AMOUNT);
 
-            const afterVotePower = await ballotContract.votingPower();
+            const afterVotePower = await ballotContract.votingPower(accounts[0]);
 
             const afterVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
 
