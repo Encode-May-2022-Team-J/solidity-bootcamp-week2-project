@@ -144,13 +144,13 @@ describe("Testing CustomBallot", function () {
 
         it("should reduce voting power by amount", async () => {
 
-            const origVotePower = await ballotContract.votingPower(accounts[0]);
+            const origVotePower = await ballotContract.votingPower(accounts[0].address);
 
             const origVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
 
             await vote(ballotContract, 0, TOKEN_AMOUNT);
 
-            const afterVotePower = await ballotContract.votingPower(accounts[0]);
+            const afterVotePower = await ballotContract.votingPower(accounts[0].address);
 
             const afterVotePowerSpent = await ballotContract.spentVotePower(accounts[0].address);
 
