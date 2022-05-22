@@ -24,7 +24,12 @@
     "version": "scripts/release/version.sh",
     "test": "hardhat test",
     "test:inheritance": "node scripts/inheritanceOrdering artifacts/build-info/*",
-    "gas-report": "env ENABLE_GAS_REPORT=true npm run test"
+    "gas-report": "env ENABLE_GAS_REPORT=true npm run test",
+    "ballot:deploy-token": "ts-node ./scripts/deployToken.ts",
+    "ballot:query-proposals": "ts-node ./scripts/queryProposals.ts",
+    "ballot:delegate": "",
+    "ballot:vote": "",
+    "ballot:query-result": "ts-node ./scripts/queryResult.ts"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
