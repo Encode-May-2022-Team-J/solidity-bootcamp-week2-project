@@ -10,16 +10,22 @@ const setListeners = (
 ) => {
   const iface = new ethers.utils.Interface(ballotJson.abi);
   const eventFilter = ballotContract.filters.Voted();
-  provider.on(eventFilter, (log) => {
+  provider.on(eventFilter, async (log) => {
     const parsedLog = iface.parseLog(log);
+    const proposalName = await ballotContract.proposals(
+      parsedLog.args.proposal
+    );
     console.log(
-      `Voted event: ${parsedLog.args.voter} voted for ${parsedLog.args.proposal}`
+      `Voted event: ${
+        parsedLog.args.voter
+      } voted for ${ethers.utils.parseBytes32String(
+        proposalName.name
+      )} with amount ${ethers.utils.formatEther(parsedLog.args.weight)}`
     );
   });
 };
 
 const attachContract = () => {
-  console.log(process.env.PRIVATE_KEY);
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? "");
   console.log(`Using address ${wallet.address}`);
   const provider = ethers.providers.getDefaultProvider("ropsten", {
@@ -43,7 +49,6 @@ const vote = async (ballotContract: CustomBallot, signer: ethers.Wallet) => {
   const voteAmount = process.argv[4];
 
   console.log("Interacting with contract now:");
-  console.log(signer.address);
   const votingPowerBN = await ballotContract.votingPower(signer.address);
   const votingPower = Number(ethers.utils.formatEther(votingPowerBN));
   console.log(`Voter has voting power of: ${votingPower}`);
