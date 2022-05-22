@@ -12,10 +12,10 @@ const attachContract = () => {
     etherscan: process.env.ETHERSCAN_API_KEY,
   });
   const signer = wallet.connect(provider);
-  if (process.argv.length < 3) throw new Error("Ballot address missing");
-  const ballotAddress = process.argv[2];
+  if (process.argv.length < 3) throw new Error("Token address missing");
+  const tokenAddress = process.argv[2];
   const tokenContract: MyToken = new Contract(
-    ballotAddress,
+    tokenAddress,
     MyTokenJson.abi,
     signer
   ) as MyToken;
