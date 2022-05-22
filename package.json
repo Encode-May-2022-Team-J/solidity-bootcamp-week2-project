@@ -26,9 +26,10 @@
     "test:inheritance": "node scripts/inheritanceOrdering artifacts/build-info/*",
     "gas-report": "env ENABLE_GAS_REPORT=true npm run test",
     "ballot:deploy-token": "ts-node ./scripts/deployToken.ts",
+    "ballot:deploy-ballot": "ts-node ./scripts/deployBallot.ts",
     "ballot:query-proposals": "ts-node ./scripts/queryProposals.ts",
-    "ballot:delegate": "",
-    "ballot:vote": "",
+    "ballot:delegate": "ts-node ./scripts/delegate.ts",
+    "ballot:vote": "ts-node ./scripts/castVote.ts",
     "ballot:query-result": "ts-node ./scripts/queryResult.ts"
   },
   "devDependencies": {
