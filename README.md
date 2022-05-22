@@ -4,6 +4,8 @@
 
 # CustomBallot contract address (ropsten)
 
+0xecEC91Ff71467DC282D24Cd5c31765F40d048e17
+
 # Terminal output deployToken.ts:
 
 ```
