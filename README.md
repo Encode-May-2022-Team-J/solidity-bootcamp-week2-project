@@ -67,6 +67,20 @@ Give voting power to 0x886A072C21f6d35F8498546c7Bd6234B7fad7e41
 Transaction completed. Hash: 0x4b44564fa3b48fcbb00394e39d9a4e44ea9210b6432f7cb5e8f79638d4d04fff
 ```
 
+# Deploy Ballot:
+
+```
+yarn run ts-node --files ./scripts/deployBallot.ts "Proposal 1" "Proposal 2" "Proposal 3"
+Deploying from account address 0xb0754B937bD306fE72264274A61BC03F43FB685F
+Wallet balance 0.19054234379670842
+Deploying ballot contract with:
+Ballot proposals: Proposal 1,Proposal 2,Proposal 3
+Vote token address 0xb8f22688BEfb8A90D8297AA59d603e75C195Ca13
+Awaiting confirmations
+CustomBallot contract successfully deployed at address: 0xecEC91Ff71467DC282D24Cd5c31765F40d048e17 - ready to receive votes
+Done in 34.79s.
+```
+
 # Cast Vote:
 
 castVote.ts is used for voter to cast vote. You need provide your private key in `PRIVATE_KEY` in `.env` so that the ballot is connected to your wallet in order to cast your vote. Run below command to cast vote to selected proposal:
