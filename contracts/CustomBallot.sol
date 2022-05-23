@@ -20,9 +20,9 @@ contract CustomBallot {
         uint256 voteCount;
     }
 
-    function setAnything(uint256 _test) public payable {
-        myAnything = _test;
-    }
+    // function setAnything(uint256 _test) public payable {
+    //     myAnything = _test;
+    // }
 
     mapping(address => uint256) public spentVotePower;
 

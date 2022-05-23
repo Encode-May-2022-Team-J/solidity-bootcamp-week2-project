@@ -109,9 +109,9 @@ describe("Testing CustomBallot", function () {
 
             // Ugly workaround because this does not seem to work in test
             // await ballotContract.deployTransaction.wait(2);
-            const setAnything = await ballotContract.setAnything(100);
+            // const setAnything = await ballotContract.setAnything(100);
 
-            await setAnything.wait();
+            // await setAnything.wait();
         })
 
         it("should increase spentVotePower by vote amount", async () => {
