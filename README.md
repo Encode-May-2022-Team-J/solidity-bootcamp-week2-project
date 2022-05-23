@@ -109,3 +109,17 @@ Voter vote proposal no. 1
 Transaction completed. Hash: 0x35718b4f808a5baabf3f59d664f00ef736e06b76ad6a0def0abcf95a82a9ff7e
 Voted event: 0x886A072C21f6d35F8498546c7Bd6234B7fad7e41 voted for Proposal 2 with amount 0.00000003
 ```
+
+# Query results:
+
+```
+yarn run ts-node --files ./scripts/queryResult.ts 0xecEC91Ff71467DC282D24Cd5c31765F40d048e17
+Using address 0xb0754B937bD306fE72264274A61BC03F43FB685F
+Proposal 1: 190000000000
+Proposal 2: 180000000000
+Proposal 3: 50000000000
+Winning proposal index: 0
+Winning Name: Proposal 1
+Done in 8.47s.
+```
+
