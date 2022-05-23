@@ -81,6 +81,33 @@ CustomBallot contract successfully deployed at address: 0xecEC91Ff71467DC282D24C
 Done in 34.79s.
 ```
 
+
+# Query Proposal:
+queryProposals.ts is used for query the proposals that are available in the ballot. You need to provide your private key in `PRIVATE_KEY` in `.env` so that the ballot is connected to your wallet in order query the proposals. Run below command to cast vote to selected proposal:
+
+```
+yarn ballot:query-proposals [ballot_contract_address]
+```
+
+Example:
+
+In this example, ballot with address 0xecEC91Ff71467DC282D24Cd5c31765F40d048e17 is used for query the proposals.
+
+```
+yarn ballot:query-proposals 0xecEC91Ff71467DC282D24Cd5c31765F40d048e17
+```
+
+Result:
+
+```
+Using address 0x886A072C21f6d35F8498546c7Bd6234B7fad7e41
+Proposal 1: Proposal 1
+Proposal 2: Proposal 2
+Proposal 3: Proposal 3
+End of proposals
+```
+
+
 # Cast Vote:
 
 castVote.ts is used for voter to cast vote. You need provide your private key in `PRIVATE_KEY` in `.env` so that the ballot is connected to your wallet in order to cast your vote. Run below command to cast vote to selected proposal:
