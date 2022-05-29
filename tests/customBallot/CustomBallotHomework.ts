@@ -49,6 +49,7 @@ describe("Testing CustomBallot", function () {
         ]);
 
         tokenContract = await tokenFactory.deploy()
+        await tokenContract.deployed();
 
         accounts = await ethers.getSigners();
     })
@@ -112,8 +113,6 @@ describe("Testing CustomBallot", function () {
             await delegate(tokenContract, accounts[0].address)
 
             ballotContract = await ballotFactory.deploy(convertStringArrayToBytes32(PROPOSALS), tokenContract.address);
-
-            await ballotContract.deployed();
 
             await ballotContract.deployed();
 
