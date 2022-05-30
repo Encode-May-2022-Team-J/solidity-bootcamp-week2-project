@@ -31,16 +31,25 @@ async function delegate(tokenContract: MyToken, delegatee: string) {
 describe("Testing CustomBallot", function () {
     let tokenContract: MyToken;
     let ballotFactory: any;
+    let tokenFactory: any;
     let accounts: SignerWithAddress[];
 
     beforeEach(async () => {
-        const tokenFactory = await ethers.getContractFactory("MyToken");
+        // const tokenFactory = await ethers.getContractFactory("MyToken");
+
+        // tokenContract = await tokenFactory.deploy()
+
+        // await tokenContract.deployed();
+
+        // ballotFactory = await ethers.getContractFactory("CustomBallot");
+
+        [ballotFactory, tokenFactory] = await Promise.all([
+            ethers.getContractFactory("CustomBallot"),
+            ethers.getContractFactory("MyToken"),
+        ]);
 
         tokenContract = await tokenFactory.deploy()
-
         await tokenContract.deployed();
-
-        ballotFactory = await ethers.getContractFactory("CustomBallot");
 
         accounts = await ethers.getSigners();
     })
@@ -143,6 +152,9 @@ describe("Testing CustomBallot", function () {
         })
 
         it("should reduce voting power by amount", async () => {
+
+            const currentBlock = await ethers.provider.getBlock("latest");
+            await ethers.provider.send("evm_mine", [currentBlock.timestamp + 1]);
 
             const origVotePower = await ballotContract.votingPower(accounts[0].address);
 
